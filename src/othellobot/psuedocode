@@ -1,0 +1,82 @@
+Pseusocode For Othello Bot
+Austin Howard
+2019-09-04
+Artificial Intelligence
+
+Game Objects Called In Main Class
+
+Public Final ME = 1
+Public Final OPPONENT = -1
+Public Final BORDER = $
+Public Final EMPTY = 0
+
+public int currentPlayer
+
+//get the currentPlayer for every move of the game
+
+myColor = InitializeColor()
+
+board = new Board(myColor)
+
+if (myColor == Black)
+	currentPlayer = ME
+else
+	currentPlayer = OPPONENT
+	
+while (!board.gameOver())
+	if currentPlayer == ME
+		move = board.getMyMove()
+		print move
+	else
+		move = board.getOpponentMove()
+	board.applyMove(currentPlayer, move)
+	board.printBoard()
+	currentPlayer = -1*currentPlayer
+	
+board.printScore()
+
+Board CLASS ------
+
+Initialize Board class
+
+Start all cells empty - 0
+Place boarder cells - 2
+Place appropriate color cells in the middle of the board
+
+receiveMove(String) method
+	use substring method to receive moves in the format ("B a 2")
+	check validity of the move then update the board
+	
+printBoard() method
+	print the current state of the board in a readable format
+	
+	
+Player CLASS ------
+
+Initialize a color for the player
+
+receiveInput() method
+	receive initialization input and set the color for the player
+	
+sendMove(String) method
+	send a move in the format ("B a 2")
+	
+//Other methods for determining best moves
+//All strategy for determining next moves will be handled by the player class
+
+	
+//Checking for available moves given the player
+
+moveList[] generateMoves(player) 
+	for each empty space (current)
+		for each direction: check for enemy piece -> loop through array of every direction 1 space around current space
+			pos = current + dir
+			if Board[pos] = oppPlayer
+				while Board[pos] == oppPlayer:
+					pos += dir //keep travelling in the direction until not oppPlayer
+					if Board[pos] == player:
+						current is a move -> add to list
+	return moveList
+	
+	
+	
