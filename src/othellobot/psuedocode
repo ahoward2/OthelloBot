@@ -79,4 +79,6 @@ moveList[] generateMoves(player)
 	return moveList
 	
 	
-	
+script file:
+	java -jar name.jar
+	chmod +x scriptfilename

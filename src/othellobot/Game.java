@@ -30,6 +30,18 @@ public class Game {
 	 * 
 	 * @param input to be received in String format
 	 */
+	
+	public boolean playersHaveNoMoves() {
+		boolean noMoves = false;
+		
+		if (this.player1.hasValidMoves == false && this.player2.hasValidMoves == false) {
+			noMoves = true;
+		}
+		
+		return noMoves;
+	}
+	
+	
 	public static void receiveInput(String input) {
 		
 		/*
