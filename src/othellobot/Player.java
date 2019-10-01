@@ -1,6 +1,5 @@
 package othellobot;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +22,7 @@ public class Player {
 	
 	String color; //to be represented as above integer values
 	int colorInt;
-	
+	boolean hasValidMoves = true; //flag to check for a pass
 	
 	
 	Player(){
@@ -226,6 +225,7 @@ public class Player {
 		
 		if (move[0] == 0 && move[1] == 0) {
 			//no available moves so we need to send a pass: either "B" or "W"
+			this.hasValidMoves = false;
 			pass = true;
 		}
 		
@@ -239,6 +239,8 @@ public class Player {
 		}
 		
 		if (pass == false) {
+			this.hasValidMoves = true; //player does have valid moves
+			
 			if (move[0] == 1) {
 				column += "a";
 			}

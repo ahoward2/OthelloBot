@@ -371,6 +371,7 @@ public class Board {
 			}
 		}
 		
+		
 		return fullBoard;
 	}
 	
@@ -446,7 +447,7 @@ public class Board {
 		for (int i = 0; i < 9; i++) {
 			
 			if(i == 0) {
-				System.out.print("*   ");
+				System.out.print("C *   ");
 			}
 			
 			else {
@@ -458,15 +459,15 @@ public class Board {
 		}
 		
 		System.out.println();
-		System.out.println();
+		System.out.println("C ");
 		
 		for (int i = 0; i < 10; i++) {
 			
 			if(i == 0 || i == 9) {
-				System.out.print("   ");
+				System.out.print("C    ");
 			}
 			else {
-				System.out.print(i + "  ");
+				System.out.print("C " + i + "  ");
 			}
 			
 			

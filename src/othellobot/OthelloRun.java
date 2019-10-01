@@ -16,8 +16,9 @@ import java.util.Scanner;
 public class OthelloRun {
 
 	public static void main(String[] args) {
-		//TODO move this project onto GitHub 
-		//TODO implement game over when both players have no valid moves
+		//TODO write script file and put .jar file on server
+		//TODO test game over implementation on server
+		//TODO clean up game over function to just come from the game class
 		
 		
 		int currentPlayer = 1; //BLACK
@@ -48,7 +49,7 @@ public class OthelloRun {
 		}
 		
 		
-		while (!game.board.gameOver()) {
+		while (!game.board.gameOver() || game.playersHaveNoMoves() == true) {
 			if (currentPlayer == ME) {
 				int[] move = player1.chooseMove(game.player1.findPossibleMoves(board, player1));
 				String formattedMove = (player1.formatMove(move, player1));
