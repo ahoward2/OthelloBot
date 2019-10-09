@@ -82,3 +82,8 @@ moveList[] generateMoves(player)
 script file:
 	java -jar name.jar
 	chmod +x scriptfilename
+	
+	
+running on the command line on the arden.cs.unca.edu server:
+	ahowardOthello //run without the referee
+	(Referee3 ahowardOthello weilerAustinOthello Region1)& //running with referee against player and spitting log file into region
