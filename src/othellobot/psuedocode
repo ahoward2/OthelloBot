@@ -85,5 +85,5 @@ script file:
 	
 	
 running on the command line on the arden.cs.unca.edu server:
-	ahowardOthello //run without the referee
+	./ahowardOthello //run without the referee
 	(Referee3 ahowardOthello weilerAustinOthello Region1)& //running with referee against player and spitting log file into region
