@@ -29,6 +29,10 @@ public class Player {
 		
 	}
 	
+	/**
+	 * Method to receive input for which color to initialize as.
+	 * @param input either "I W" to initialize as WHITE or "I B" to initialize as BLACK.
+	 */
 	public void receiveInput(String input) {
 		if (input == "I B") {
 			this.color = "BLACK";
@@ -40,12 +44,24 @@ public class Player {
 			this.colorInt = -1;
 		}
 	}
-
+	
+	/**
+	 * Method to send a formatted move.
+	 * @param move
+	 * @return move
+	 */
 	public String sendMove(String move) {
 		//System.out.println(color + " player sending move: " + move);
 		return move;
 	}
 	
+	/**
+	 * Method to find all possible moves for a player by iterating through all empty spaces
+	 * and all directions for each empty space to check for move validity.
+	 * @param board the game board.
+	 * @param player the player for which to find possible moves.
+	 * @return an ArrayList with indexes that represent possible moves.
+	 */
 	public ArrayList <Integer> findPossibleMoves(Board board, Player player) { //change this to return the list of moves
 		//System.out.println("PLAYER findPossibleMoves method for --- " + player.color);
 		int oppPlayerInt = player.getColorInt()*-1;
@@ -198,9 +214,14 @@ public class Player {
 			}
 		}
 		return moveList;
-		
 	}
 	
+	/**
+	 * Method for choosing a move from an ArrayList of possible moves. Currently just picks
+	 * the first available move.
+	 * @param moveList ArrayList of possible moves.
+	 * @return integer list for a move [columnNumber,rowNumber]
+	 */
 	public int[] chooseMove(ArrayList<Integer> moveList) {
 		//System.out.println("PLAYER chooseMove method for --- "+this.color);
 		int counter = 0;
@@ -217,6 +238,12 @@ public class Player {
 		return move;
 	}
 	
+	/**
+	 * Format the move into a string for standard output.
+	 * @param move integer list of the move [columnNumber,rowNumber].
+	 * @param player player making the move.
+	 * @return formatted string.
+	 */
 	public String formatMove(int[] move, Player player) {
 		String formattedMove = "";
 		String column = "";
@@ -274,18 +301,34 @@ public class Player {
 		return formattedMove;
 	}
 	
+	/**
+	 * Getter method to get the integer associated with the player's color.
+	 * @return color integer.
+	 */
 	public int getColorInt() {
 		return colorInt;
 	}
 
+	/**
+	 * Setter method for the integer associated with the player's color.
+	 * @param colorInt color integer.
+	 */
 	public void setColorInt(int colorInt) {
 		this.colorInt = colorInt;
 	}
 
+	/**
+	 * Getter method for the String representing the player's color.
+	 * @return string of the player's color.
+	 */
 	public String getColor() {
 		return color;
 	}
 
+	/**
+	 * Setter method to set the String representing the player's color.
+	 * @param color string of the player's color.
+	 */
 	public void setColor(String color) {
 		this.color = color;
 	}

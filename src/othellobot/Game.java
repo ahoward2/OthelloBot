@@ -24,24 +24,26 @@ public class Game {
 		this.player2 = player2;
 	}
 	
-	/**
-	 * Based on the commands received, this function should call the
-	 * appropriate commands to update the state of the game board.
-	 * 
-	 * @param input to be received in String format
-	 */
 	
+	/**
+	 * Method to check if both players have no available moves.
+	 * @return boolean value.
+	 */
 	public boolean playersHaveNoMoves() {
 		boolean noMoves = false;
 		
 		if (this.player1.hasValidMoves == false && this.player2.hasValidMoves == false) {
 			noMoves = true;
 		}
-		
 		return noMoves;
 	}
 	
-	
+	/**
+	 * Based on the commands received, this function should call the
+	 * appropriate commands to update the state of the game board.
+	 * 
+	 * @param input to be received in String format
+	 */
 	public static void receiveInput(String input) {
 		
 		/*

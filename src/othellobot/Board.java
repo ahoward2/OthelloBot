@@ -48,7 +48,7 @@ public class Board {
 	}
 	
 	/**
-	 * 
+	 * Method to receive a formatted move, update the move, then call a function to flip necessary pieces.
 	 * @param move String that indicates color, column, row in format (EX, (B) a 2)
 	 */
 	public void receiveMove(String move) {
@@ -107,19 +107,24 @@ public class Board {
 			if (color.compareTo("B") == 0) {
 				boardArray[colNumber][Integer.valueOf(row)] = 1;
 				//System.out.println("Move executed for BLACK");
-				this.updateBoard(1, colNumber, Integer.valueOf(row));
+				this.updateBoard(1, colNumber, Integer.valueOf(row)); //find flips needed to be made
 			}
 			else if (color.compareTo("W") == 0) {
 				boardArray[colNumber][Integer.valueOf(row)] = -1;
 				//System.out.println("Move executed for WHITE");
-				this.updateBoard(-1, colNumber, Integer.valueOf(row));
+				this.updateBoard(-1, colNumber, Integer.valueOf(row)); //find flips needed to be made
 			}
 		}
 		
 		
 	}
 	
-	
+	/**
+	 * Method that finds all of the necessary flips whenever a move is made by a player.
+	 * @param playerColorInt color of the move
+	 * @param column column of the move
+	 * @param row row of the move
+	 */
 	public void updateBoard(int playerColorInt, int column, int row) {
 		//System.out.println("BOARD updateBoard method for --- " + "ColorInt: " + playerColorInt + ", " + "Column: " + column + ", " + "Row: " + row);
 		int[][] currentBoard = this.getBoardArray();
@@ -312,6 +317,12 @@ public class Board {
 		
 	}
 	
+	/**
+	 * Method to format moves.
+	 * @param move two item integer list [columnNumber,rowNumber]
+	 * @param playerColorInt color of player making the move
+	 * @return appropriately formatted move
+	 */
 	public String formatMove(int[] move, int playerColorInt) {
 		String formattedMove = "";
 		String column = "";
@@ -360,6 +371,10 @@ public class Board {
 		return formattedMove;
 	}
 	
+	/**
+	 * Method for checking to see if there are no moves left to make on the board.
+	 * @return boolean for whether the board is full or not full
+	 */
 	public boolean gameOver() {
 		boolean fullBoard = true;
 		
@@ -370,11 +385,13 @@ public class Board {
 				}
 			}
 		}
-		
-		
 		return fullBoard;
 	}
 	
+	/**
+	 * Method to calculate the score of the board.
+	 * @return two item integer list [blackPlayerScore,whitePlayerScore]
+	 */
 	public int[] getScore() {
 		int whiteScore = 0;
 		int blackScore = 0;
@@ -395,6 +412,10 @@ public class Board {
 		return score;
 	}
 	
+	/**
+	 * Method to get the opponent's move from standard input.
+	 * @return the move
+	 */
 	public String getOpponentMove() {
 		String move;
 		
@@ -405,10 +426,18 @@ public class Board {
 		return move;
 	}
 	
+	/**
+	 * Getter method to get the boardArray.
+	 * @return the boardArray.
+	 */
 	public int[][] getBoardArray() {
 		return boardArray;
 	}
 
+	/**
+	 * Setter method for setting the boardArray.
+	 * @param boardArray
+	 */
 	public static void setBoardArray(int[][] boardArray) {
 		Board.boardArray = boardArray;
 	}
