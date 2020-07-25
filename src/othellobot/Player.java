@@ -213,6 +213,8 @@ public class Player {
 				}
 			}
 		}
+		//convert moveList into a list of Move objects and return it
+		System.out.println("list of legal moves for bot" + moveList);
 		return moveList;
 	}
 	
@@ -222,19 +224,20 @@ public class Player {
 	 * @param moveList ArrayList of possible moves.
 	 * @return integer list for a move [columnNumber,rowNumber]
 	 */
-	public int[] chooseMove(ArrayList<Integer> moveList) {
+	public Move chooseMove(ArrayList<Integer> moveList) {
 		//System.out.println("PLAYER chooseMove method for --- "+this.color);
 		int counter = 0;
-		int[] move = new int[2];
+		int[] moveIndex = new int[2];
 		for(Integer i: moveList) {
 			if (counter < 2) {
-				move[counter] = i;
+				moveIndex[counter] = i;
 				counter++;
 			}
 		}
 		//for (int j: move) {
 			//System.out.println(j);
 		//}
+		Move move = new Move(this.formatMove(moveIndex, this),moveIndex);
 		return move;
 	}
 	

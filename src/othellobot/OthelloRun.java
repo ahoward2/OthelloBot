@@ -50,10 +50,9 @@ public class OthelloRun {
 		
 		while (!game.board.gameOver() || game.playersHaveNoMoves() == true) { //game loop with end game conditions
 			if (currentPlayer == ME) {
-				int[] move = player1.chooseMove(game.player1.findPossibleMoves(board, player1)); //choose move from possible moves
-				String formattedMove = (player1.formatMove(move, player1)); //format the chosen move 
-				System.out.println(formattedMove); //print formatted move to standard output
-				game.board.receiveMove(game.player1.sendMove(formattedMove)); //send formatted move to the board
+				Move move = player1.chooseMove(game.player1.findPossibleMoves(board, player1)); //choose move from possible moves
+				System.out.println(move.getMoveString() ); //print formatted move to standard output
+				game.board.receiveMove(game.player1.sendMove(move.getMoveString() )); //send formatted move to the board
 				game.board.printBoard(); //print the board
 			}
 			else {
