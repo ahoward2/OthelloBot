@@ -62,11 +62,11 @@ public class Player {
 	 * @param player the player for which to find possible moves.
 	 * @return an ArrayList with indexes that represent possible moves.
 	 */
-	public ArrayList <Integer> findPossibleMoves(Board board, Player player) { //change this to return the list of moves
+	public ArrayList <Move> findPossibleMoves(Board board, Player player) { //change this to return the list of moves
 		//System.out.println("PLAYER findPossibleMoves method for --- " + player.color);
 		int oppPlayerInt = player.getColorInt()*-1;
 		int[][] currentBoard = board.getBoardArray();
-		ArrayList<Integer> moveList = new ArrayList<Integer>();
+		ArrayList<Move> moveList = new ArrayList<Move>();
 		boolean validSpace;
 		
 		//make a for loop that goes through the board and make a list of all possible moves in the format (a 3)
@@ -92,9 +92,8 @@ public class Player {
 						nextI -= 1;
 						nextJ -= 1;
 						if (currentBoard[nextI][nextJ] == player.getColorInt()) {
-							//System.out.println("adding move - " + i + j);
-							moveList.add(i);
-							moveList.add(j);
+							//System.out.println("adding move - " + i + j);						
+							moveList.add(new Move(this.formatMove(new int[]{i,j}, this),new int[]{i,j}));
 							validSpace = false; //no longer a valid space once added to move list
 						}
 					}
@@ -109,8 +108,7 @@ public class Player {
 						nextJ -= 1;
 						if (currentBoard[nextI][nextJ] == player.getColorInt()) {
 							//System.out.println("adding move - " + i + j);
-							moveList.add(i);
-							moveList.add(j);
+							moveList.add(new Move(this.formatMove(new int[]{i,j}, this),new int[]{i,j}));
 							validSpace = false; //no longer a valid space once added to move list
 						}
 					}
@@ -125,8 +123,7 @@ public class Player {
 						nextJ -= 1;
 						if (currentBoard[nextI][nextJ] == player.getColorInt()) {
 							//System.out.println("adding move - " + i + j);
-							moveList.add(i);
-							moveList.add(j);
+							moveList.add(new Move(this.formatMove(new int[]{i,j}, this),new int[]{i,j}));
 							validSpace = false; //no longer a valid space once added to move list
 						}
 					}
@@ -141,8 +138,7 @@ public class Player {
 						nextJ -= 0;
 						if (currentBoard[nextI][nextJ] == player.getColorInt()) {
 							//System.out.println("adding move - " + i + j);
-							moveList.add(i);
-							moveList.add(j);
+							moveList.add(new Move(this.formatMove(new int[]{i,j}, this),new int[]{i,j}));
 							validSpace = false; //no longer a valid space once added to move list
 						}
 					}
@@ -157,8 +153,7 @@ public class Player {
 						nextJ -= 0;
 						if (currentBoard[nextI][nextJ] == player.getColorInt()) {
 							//System.out.println("adding move - " + i + j);
-							moveList.add(i);
-							moveList.add(j);
+							moveList.add(new Move(this.formatMove(new int[]{i,j}, this),new int[]{i,j}));
 							validSpace = false; //no longer a valid space once added to move list
 						}
 					}
@@ -173,8 +168,7 @@ public class Player {
 						nextJ += 1;
 						if (currentBoard[nextI][nextJ] == player.getColorInt()) {
 							//System.out.println("adding move - " + i + j);
-							moveList.add(i);
-							moveList.add(j);
+							moveList.add(new Move(this.formatMove(new int[]{i,j}, this),new int[]{i,j}));
 							validSpace = false; //no longer a valid space once added to move list
 						}
 					}
@@ -189,8 +183,7 @@ public class Player {
 						nextJ += 1;
 						if (currentBoard[nextI][nextJ] == player.getColorInt()) {
 							//System.out.println("adding move - " + i + j);
-							moveList.add(i);
-							moveList.add(j);
+							moveList.add(new Move(this.formatMove(new int[]{i,j}, this),new int[]{i,j}));
 							validSpace = false; //no longer a valid space once added to move list
 						}
 					}
@@ -205,16 +198,17 @@ public class Player {
 						nextJ += 1;
 						if (currentBoard[nextI][nextJ] == player.getColorInt()) {
 							//System.out.println("adding move - " + i + j);
-							moveList.add(i);
-							moveList.add(j);
+							moveList.add(new Move(this.formatMove(new int[]{i,j}, this),new int[]{i,j}));
 							validSpace = false; //no longer a valid space once added to move list
 						}
 					}
 				}
 			}
 		}
-		//convert moveList into a list of Move objects and return it
-		System.out.println("list of legal moves for bot" + moveList);
+		
+		for (Move move: moveList) {
+			move.sumCapturableDiscs(board, this);
+		}
 		return moveList;
 	}
 	
@@ -224,21 +218,10 @@ public class Player {
 	 * @param moveList ArrayList of possible moves.
 	 * @return integer list for a move [columnNumber,rowNumber]
 	 */
-	public Move chooseMove(ArrayList<Integer> moveList) {
+	public Move chooseMove(ArrayList<Move> moveList) {
 		//System.out.println("PLAYER chooseMove method for --- "+this.color);
-		int counter = 0;
-		int[] moveIndex = new int[2];
-		for(Integer i: moveList) {
-			if (counter < 2) {
-				moveIndex[counter] = i;
-				counter++;
-			}
-		}
-		//for (int j: move) {
-			//System.out.println(j);
-		//}
-		Move move = new Move(this.formatMove(moveIndex, this),moveIndex);
-		return move;
+		System.out.println("chosen move sum of capturable discs: " + moveList.get(0).getWeight());
+		return moveList.get(0); //first legal move
 	}
 	
 	/**

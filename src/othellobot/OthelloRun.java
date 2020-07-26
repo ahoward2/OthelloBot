@@ -52,7 +52,7 @@ public class OthelloRun {
 			if (currentPlayer == ME) {
 				Move move = player1.chooseMove(game.player1.findPossibleMoves(board, player1)); //choose move from possible moves
 				System.out.println(move.getMoveString() ); //print formatted move to standard output
-				game.board.receiveMove(game.player1.sendMove(move.getMoveString() )); //send formatted move to the board
+				game.board.receiveMove(game.player1.sendMove(move.getMoveString())); //send formatted move to the board
 				game.board.printBoard(); //print the board
 			}
 			else {
