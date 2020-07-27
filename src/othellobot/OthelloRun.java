@@ -29,6 +29,11 @@ public class OthelloRun {
 		Board board = new Board();
 		Game game = new Game(board, player1, player2);
 		
+		Model model = new Model();
+		View view = new View("Othello");
+		Controller controller = new Controller(model, view);
+		controller.initController();
+		
 		
 		String myColor;
 		myColor = getMyColor(); //receive input from standard input for which color to play as
