@@ -1,15 +1,12 @@
 package othellobot;
 
-import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.GridLayout;
-
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.JPanel;
+
 
 public class View {
 	private JFrame frame;
@@ -17,26 +14,30 @@ public class View {
 	public View(String title) {
 		frame = new JFrame(title);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800, 800);
-		GridLayout layout = new GridLayout(8,8,0,0);
-		frame.getContentPane().setLayout(layout);
+		frame.setSize(600, 600);
+		frame.setResizable(false);
+		GridLayout grid = new GridLayout(8,8);
+		JPanel panel = new JPanel();
 		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
+		panel.setLayout(grid);
+		panel.setBackground(Color.green);
 		
 		int xcounter = 0;
 		int ycounter = 0;
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				JButton button = new JButton();
-				button.setBounds(xcounter, ycounter, 100, 100);
+				button.setBounds(xcounter, ycounter, 50, 50);
 				button.setBackground(Color.green);
-				button.setOpaque(false);
-				frame.getContentPane().add(button);
-				xcounter += 100;
+				panel.add(button);
+				xcounter += 50;
 			}
 			xcounter = 0;
-			ycounter+= 100;
+			ycounter+= 50;
 		}
+		
+		frame.getContentPane().add(panel);
+		frame.setVisible(true);
 		
 	}
 }
