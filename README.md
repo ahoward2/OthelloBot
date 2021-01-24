@@ -109,3 +109,11 @@
   * n -- Other program claiming end game
  
  </details>
+ 
+ # Todo
+ 
+-> Finish implementation of Swing front-end, maybe something different and better. (HARD)
+-> Implement min-max alpha beta pruning algorithm with a game timeout as end condition when evaluating predictions multiple layers deep (HARD)
+-> Small refactor to optimize for local games. (EASY)
+-> Abstract out logic for player moves into Move class - implement move objects. (MODERATE)
+-> Comment out code to spin up Swing front-end and write tests / clean up code & make console interface better. (EASY)
